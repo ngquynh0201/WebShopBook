@@ -1,0 +1,61 @@
+﻿<div class="fb-product_with_banner fb-featured-pro_with_banner pt-60 pb-60">
+    <div class="container">
+        <div class="fb-section_title-2">
+            <h2>Sản phẩm nổi bật</h2>
+        </div>
+        <div class="row no-gutters">
+            <!-- Begin FB's Banner Area -->
+            <div class="col-xl-3 col-lg-4 col-md-5">
+                <div class="fb-banner fb-img-hover-effect" style="height: 100%">
+                    <a href="~/Product" style="height: 100%">
+                        <img src="~/Content/images/products/OIG 6.jpg" alt="FB'S Banner" style="object-fit: cover; height: 100%">
+                    </a>
+                </div>
+            </div>
+            <!-- FB's Banner Area End Here -->
+            <!-- Begin FB's Product Wrap Area -->
+            <div class="col-xl-9 col-lg-8 col-md-7">
+                <div class="fb-product_wrap bg-white">
+                    <div class="fb-product_active owl-carousel">
+                        @foreach (var product in ViewData["SanPham5Sao"] as List<Ecommerce.Models.Product>)
+                        {
+                            <!-- Begin Sigle Product Area -->
+                            <div class="single-product">
+                                <!-- Begin Product Image Area -->
+                                <div class="product-img">
+                                    <a href="~/Product/Details/@product.ProductID">
+                                        <img class="primary-img" src="~/Content/images/products/@product.Thumb" alt="@product.ProductName" style="min-height: 250px; object-fit: contain; cursor: pointer">
+                                    </a>
+                                    <div class="sticker"><span>New</span></div>
+                                </div>
+                                <!-- Product Image Area End Here -->
+                                <!-- Begin Product Content Area -->
+                                <div class="product-content">
+                                    <h2 class="product-name">
+                                        <a href="~/Product/Details/@product.ProductID">@product.ProductName</a>
+                                    </h2>
+                                    <div class="rating-box">
+                                        <ul class="rating">
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price-box-2">
+                                        <span class="new-price">$@product.Price</span>
+                                    </div>
+                                </div>
+                                <!-- Product Content Area End Here -->
+                            </div>
+                            <!-- Sigle Product Area End Here -->
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <!-- FB's Product Wrap Area End Here -->
+        </div>
+    </div>
+</div>

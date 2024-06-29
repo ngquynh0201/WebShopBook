@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Content/AdminAssetss/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Content/AdminAssetss/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Content/AdminAssetss/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="~/Content/AdminAssetss/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/Content/AdminAssetss/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/AdminAssetss/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/Content/AdminAssetss/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/Content/AdminAssetss/images/favicon.png" />
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_sidebar.html -->
+        @Html.Partial("_SidebarPartialView")
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_navbar.html -->
+            @Html.Partial("_NavbarPartialView")
+            <!-- partial -->
+            @RenderBody()
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/Content/AdminAssetss/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/Content/AdminAssetss/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/Content/AdminAssetss/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="~/Content/AdminAssetss/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="~/Content/AdminAssetss/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Content/AdminAssetss/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/Content/AdminAssetss/js/off-canvas.js"></script>
+    <script src="~/Content/AdminAssetss/js/hoverable-collapse.js"></script>
+    <script src="~/Content/AdminAssetss/js/misc.js"></script>
+    <script src="~/Content/AdminAssetss/js/settings.js"></script>
+    <script src="~/Content/AdminAssetss/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="~/Content/AdminAssetss/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/AdminAssets/lib/chart/chart.min.js"></script>
+    <script src="~/Content/AdminAssets/lib/easing/easing.min.js"></script>
+    <script src="~/Content/AdminAssets/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/Content/AdminAssets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/Content/AdminAssets/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="~/Content/AdminAssets/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="~/Content/AdminAssets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Trong file _Layout.cshtml hoặc nơi khác tương tự -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        // Hiển thị toast notification nếu có
+        toastr.options.positionClass = 'toast-top-right';
+        toastr.options.showDuration = 1000;
+        toastr.options.hideDuration = 1000;
+        toastr.options.timeOut = 5000;
+        toastr.options.extendedTimeOut = 1000;
+
+        // Kiểm tra và hiển thị thông báo thành công
+        if('@TempData["SuccessMessage"]' !== '') {
+            toastr.success('@TempData["SuccessMessage"]', 'Success');
+        }
+
+        // Kiểm tra và hiển thị thông báo thất bại
+        if('@TempData["ErrorMessage"]' !== '') {
+            toastr.error('@TempData["ErrorMessage"]', 'Error');
+        }
+    });
+    </script>
+
+    @* Lọc danh sách sản phẩm theo danh mục *@
+    <script>
+        function filterProducts() {
+            var selectedCategoryId = $("#idcat").val();
+
+            // You can make an AJAX call to the server to get filtered products
+            // For simplicity, I'll redirect to the Index action with the selected category parameter
+
+            if (selectedCategoryId === "0") {
+                window.location.href = '@Url.Action("Index")'; // Redirect to the default action without any category filter
+            } else {
+                window.location.href = '@Url.Action("Index")' + '?category=' + selectedCategoryId;
+            }
+        }
+    </script>
+</body>
+</html>

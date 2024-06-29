@@ -1,0 +1,70 @@
+﻿@*Giao diện Danh Mục*@
+<div class="slider-with-banner slider-with-category-menu pt-30">
+    <div class="container">
+        <div class="row">
+            <!-- Begin Category Menu Area -->
+            <div class="col-xl-3 col-lg-4">
+                <!--Category Menu Start-->
+                <div class="category-menu">
+                    <div class="category-heading">
+                        <h2 class="categories-toggle"><span>DANH MỤC</span></h2>
+                    </div>
+                    <div id="cate-toggle" class="category-menu-list">
+                        @{
+                            var danhMucList = ViewData["DanhMuc"] as SelectList;
+                        }
+                        <ul style="height: 448px; background: #fff">
+                            @foreach (var item in danhMucList)
+                            {
+                                // Check if item.Value is not null before accessing it
+                                if (!string.IsNullOrEmpty(item.Value))
+                                {
+                                    // Combine the value with the file extension
+                                    var imagePath = $"~/Content/assets/images/category-thumbC/{item.Value}.png";
+
+                                    <li><a href="~/Product?category=@item.Value"><span><img src="@Url.Content(imagePath)" alt=""></span> @item.Text</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <!--Category Menu End-->
+            </div>
+            <!-- Category Menu Area End Here -->
+            <!-- Begin Slider Area -->
+            <div class="col-xl-9 col-lg-8">
+                <div class="slider-area slider-area-2 pt-sm-30 pt-xs-30">
+                    <div class="slider-active owl-carousel">
+                        <!-- Begin Single Slide Area -->
+                        <div class="single-slide align-center-left  animation-style-01 bg-7">
+                            <div class="slider-progress"></div>
+                            <div class="slider-content">
+                                <h2>Black Friday</h2>
+                                <h3>Sale 30% Off</h3>
+                                <h5>All Medical Books</h5>
+                                <div class="default-btn slide-btn">
+                                    <a class="fb-links fb-links-round" href="shop.html">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Slide Area End Here -->
+                        <!-- Begin Single Slide Area -->
+                        <div class="single-slide align-center-left animation-style-02 bg-6">
+                            <div class="slider-progress"></div>
+                            <div class="slider-content">
+                                <h2>Big Sale</h2>
+                                <h3>Up To 50% Off</h3>
+                                <h5>Books in Store</h5>
+                                <div class="default-btn slide-btn">
+                                    <a class="fb-links fb-links-round" href="shop-left-sidebar.html">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Slide Area End Here -->
+                    </div>
+                </div>
+            </div>
+            <!-- Slider Area End Here -->
+        </div>
+    </div>
+</div>

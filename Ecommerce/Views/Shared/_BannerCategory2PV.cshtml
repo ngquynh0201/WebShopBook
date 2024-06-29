@@ -1,0 +1,195 @@
+﻿@*Giao diện sách Tri Thức và sách IT*@
+<div class="fb-banner_with-new_product fb-banner_with-new_product-2 pt-60 pb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="fb-section_title-2 phones-tablets">
+                    <h2>Sách Tri thức</h2>
+                </div>
+                <!-- Begin FB's Banner Area -->
+                <div class="fb-banner fb-img-hover-effect">
+                    <a href="~/Product">
+                        <img src="~/Content/images/products/OIS1.png"  alt="FB'S Banner" style="object-fit: cover; max-height: 180px;">
+                    </a>
+                </div>
+                <!-- FB's Banner Area End Here -->
+                <div class="fb-product_wrap fb-new_product_wrap bg-white">
+                    <div class="fb-new_product_active owl-carousel">
+                        @foreach (var product in ViewData["topCatBottle"] as List<Ecommerce.Models.Product>)
+                        {
+                            <!-- Begin Sigle Product Area -->
+                            <div class="single-product">
+                                <!-- Begin Product Image Area -->
+                                <div class="product-img" style="height: 100%">
+                                    <a href="~/Product/Details/@product.ProductID" style="height: 100%">
+                                        <img class="primary-img" src="~/Content/images/products/@product.Thumb" alt="@product.ProductName" style="min-height: 305px; margin-bottom: 10px; max-height: 305px; object-fit: contain; cursor: pointer">
+                                    </a>
+                                    <div class="sticker"><span>New</span></div>
+                                </div>
+                                <!-- Product Image Area End Here -->
+                                <!-- Begin Product Content Area -->
+                                <div class="product-content">
+                                    <h2 class="product-name">
+                                        <a href="~/Product/Details/@product.ProductID">@product.ProductName</a>
+                                    </h2>
+                                    <div class="rating-box">
+                                        <ul class="rating">
+                                            @if (product.Ratting == 0 || product.Ratting == null)
+                                            {
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 1)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 2)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 3)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 4)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 5)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">@product.Price</span>
+                                    </div>
+                                </div>
+                                <!-- Product Content Area End Here -->
+                            </div>
+                            <!-- Sigle Product Area End Here -->
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="fb-section_title-2 computer-laptop pt-sm-60 pt-xs-60">
+                    <h2>Sách IT</h2>
+                </div>
+                <!-- Begin FB's Banner Area -->
+                <div class="fb-banner fb-img-hover-effect">
+                    <a href="~/Product">
+                        <img src="~/Content/images/products/OIG 41.jpg" alt="FB'S Banner" style="object-fit: cover; max-height: 180px;">
+                    </a>
+                </div>
+                <!-- FB's Banner Area End Here -->
+                <div class="fb-product_wrap fb-new_product_wrap bg-white">
+                    <div class="fb-new_product_active owl-carousel">
+                        @foreach (var product in ViewData["topCatWatch"] as List<Ecommerce.Models.Product>)
+                        {
+                            <!-- Begin Sigle Product Area -->
+                            <div class="single-product">
+                                <!-- Begin Product Image Area -->
+                                <div class="product-img" style="height: 100%">
+                                    <a href="~/Product/Details/@product.ProductID" style="height: 100%">
+                                        <img class="primary-img" src="~/Content/images/products/@product.Thumb" alt="@product.ProductName" style="min-height: 305px; margin-bottom: 10px; max-height: 305px; object-fit: contain; cursor: pointer">
+                                    </a>
+                                    <div class="sticker"><span>New</span></div>
+                                </div>
+                                <!-- Product Image Area End Here -->
+                                <!-- Begin Product Content Area -->
+                                <div class="product-content">
+                                    <h2 class="product-name">
+                                        <a href="~/Product/Details/@product.ProductID">@product.ProductName</a>
+                                    </h2>
+                                    <div class="rating-box">
+                                        <ul class="rating">
+                                            @if (product.Ratting == 0 || product.Ratting == null)
+                                            {
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 1)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 2)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 3)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 4)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li class="no-star"><i class="fa fa-star"></i></li>
+                                            }
+                                            else if (product.Ratting == 5)
+                                            {
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                                <li><i class="fa fa-star"></i></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="new-price">@product.Price</span>
+                                    </div>
+                                </div>
+                                <!-- Product Content Area End Here -->
+                            </div>
+                            <!-- Sigle Product Area End Here -->
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

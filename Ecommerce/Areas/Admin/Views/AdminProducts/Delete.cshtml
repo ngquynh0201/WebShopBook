@@ -1,0 +1,174 @@
+﻿@model Ecommerce.Models.Product
+
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Xóa sản phẩm </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="~/Admin/HomeAdmin">Home</a></li>
+                        <li class="breadcrumb-item"><a href="~/Admin/AdminProducts">Danh sách sản phẩm</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Xóa sản phẩm </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 30px">
+                                <h4 class="card-title" style="margin-bottom: 0">Xóa sản phẩm </h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody style="vertical-align: middle">
+                                        <tr>
+                                            <td>ID:</td>
+                                            <td>@Model.ProductID</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tên sản phẩm:</td>
+                                            <td>@Model.ProductName</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mô tả ngắn:</td>
+                                            <td>@Model.ShortDesc</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Giá bán:</td>
+                                            <td>@Model.Price</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sự bớt</td>
+                                            <td>@Model.Discount</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Xếp hạng</td>
+                                            <td>@Model.Ratting</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hoạt động</td>
+                                            <td>
+                                                @if (Model.Active)
+                                                {
+                                                    <label class="container">
+                                                        <input type="checkbox" checked="checked">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="container">
+                                                        <input type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bán chạy nhất</td>
+                                            <td>
+                                                @if (Model.BestSellers)
+                                                {
+                                                    <label class="container">
+                                                        <input type="checkbox" checked="checked">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="container">
+                                                        <input type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>HomeFlag:</td>
+                                            <td>
+                                                @if (Model.HomeFlag)
+                                                {
+                                                    <label class="container">
+                                                        <input type="checkbox" checked="checked">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="container">
+                                                        <input type="checkbox">
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Danh mục:</td>
+                                            <td>@Model.Category.CatName</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ngày tạo:</td>
+                                            <td>@Model.DateCreated</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ngày chỉnh sửa:</td>
+                                            <td>@Model.DateModified</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tiêu đề:</td>
+                                            <td>@Model.Title</td>
+                                        </tr>
+                                        <tr>
+                                            <td>MetaDesc:</td>
+                                            <td>@Model.MetaDesc</td>
+                                        </tr>
+                                        <tr>
+                                            <td>MetaKey:</td>
+                                            <td>@Model.MetaKey</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tags:</td>
+                                            <td>@Model.Tags</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ảnh đại diện:</td>
+                                            <td>
+                                                <img width="140" height="140" style="object-fit: contain" src="~/Content/images/products/@Model.Thumb" alt="@Model.ProductName" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mô tả sản phẩm:</td>
+                                            <td>
+                                                @Html.Raw(HttpUtility.HtmlDecode(Model.Description))
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Xác nhận xóa:</td>
+                                            <td>
+                                                @using (Html.BeginForm())
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <div class="form-actions no-color">
+                                                        <input type="submit" value="Delete" class="btn btn-primary" />
+                                                    </div>
+                                                }
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

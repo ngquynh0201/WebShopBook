@@ -1,0 +1,209 @@
+﻿@model Ecommerce.Models.TinTuc
+
+@{
+    ViewBag.Title = "Xem tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Thông tin tin tức </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="~/Admin/HomeAdmin"> Home </a></li>
+                        <li class="breadcrumb-item"><a href="~/Admin/AdminTinTucs"> Danh sách tin tức </a></li>
+                        <li class="breadcrumb-item active" aria-current="page"> Thông tin tin tức </li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 30px">
+                                <h4 class="card-title" style="margin-bottom: 0">Thông tin tin tức </h4>
+                            </div>
+                            <ul class="nav nav-tabs" id="myTabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="info-tab" data-bs-toggle="tab" href="#infoSection">Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="image-tab" data-bs-toggle="tab" href="#imageSection">Image</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="content-tab" data-bs-toggle="tab" href="#contentSection">Content</a>
+                                </li>
+                            </ul>
+                            <div>
+                                <div class="tab-content mt-3">
+                                    <div class="tab-pane active" id="infoSection">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody style="vertical-align: middle">
+                                                    <tr>
+                                                        <td>ID:</td>
+                                                        <td>@Model.PostID</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tiêu đề</td>
+                                                        <td>@Model.Title</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mô tả ngắn</td>
+                                                        <td>@Model.SContents</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Trạng thái</td>
+                                                        <td>
+                                                            @if (Model.Published == true)
+                                                            {
+                                                                <span>Công cộng</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span>không công khai</span>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tin tức nóng</td>
+                                                        <td>
+                                                            @if (Model.isHot == true)
+                                                            {
+                                                                <span>Tin tức nóng nhất</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span>Tin tức không nóng</span>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>nguồn cấp dữ liệu mới</td>
+                                                        <td>
+                                                            @if (Model.isNewFeed == true)
+                                                            {
+                                                                <span>Đã cập nhật</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span>Chưa cập nhật</span>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tác giả</td>
+                                                        <td>@Model.Author</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MetaDesc</td>
+                                                        <td>@Model.MetaDesc</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MetaKey</td>
+                                                        <td>@Model.MetaKey</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane text-center" id="imageSection">
+                                        <img width="600" height="400" style="object-fit: contain" src="~/Content/images/posts/@Model.Thumb" alt="@Model.Title" />
+                                    </div>
+                                    <div class="tab-pane" id="contentSection">
+                                        <p style="margin-top: 8px">@Html.Raw(HttpUtility.HtmlDecode(Model.Contents))</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    <style>
+                        thead, tbody, tfoot, tr {
+                            line-height: 40px;
+                        }
+
+                            thead, tbody, tfoot, tr td {
+                                width: 50%;
+                            }
+                    </style>
+
+                    <style>
+                        /* Customize the label (the container) */
+                        .container {
+                            display: block;
+                            position: relative;
+                            padding-left: 35px;
+                            margin-bottom: 12px;
+                            cursor: pointer;
+                            font-size: 22px;
+                            -webkit-user-select: none;
+                            -moz-user-select: none;
+                            -ms-user-select: none;
+                            user-select: none;
+                        }
+
+                            /* Hide the browser's default checkbox */
+                            .container input {
+                                position: absolute;
+                                opacity: 0;
+                                cursor: pointer;
+                                height: 0;
+                                width: 0;
+                            }
+
+                        /* Create a custom checkbox */
+                        .checkmark {
+                            position: absolute;
+                            top: -5px;
+                            left: 0;
+                            height: 25px;
+                            width: 25px;
+                            background-color: #eee;
+                        }
+
+                        /* On mouse-over, add a grey background color */
+                        .container:hover input ~ .checkmark {
+                            background-color: #ccc;
+                        }
+
+                        /* When the checkbox is checked, add a blue background */
+                        .container input:checked ~ .checkmark {
+                            background-color: #EB1616;
+                        }
+
+                        /* Create the checkmark/indicator (hidden when not checked) */
+                        .checkmark:after {
+                            content: "";
+                            position: absolute;
+                            display: none;
+                        }
+
+                        /* Show the checkmark when checked */
+                        .container input:checked ~ .checkmark:after {
+                            display: block;
+                        }
+
+                        /* Style the checkmark/indicator */
+                        .container .checkmark:after {
+                            left: 9px;
+                            top: 3px;
+                            width: 8px;
+                            height: 15px;
+                            border: solid white;
+                            border-width: 0 3px 3px 0;
+                            -webkit-transform: rotate(45deg);
+                            -ms-transform: rotate(45deg);
+                            transform: rotate(45deg);
+                        }
+                    </style>
+                

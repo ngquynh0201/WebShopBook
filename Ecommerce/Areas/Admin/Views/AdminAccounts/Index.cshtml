@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Ecommerce.Models.Account>
+
+@{
+    ViewBag.Title = "Giao diện truy cập";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper" style="width: 1100px">
+            <div class="page-header">
+                <h3 class="page-title"> Danh sách truy cập </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="~/Admin/HomeAdmin">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Danh sách tài khoản</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 30px">
+                                <h4 class="card-title" style="margin-bottom: 0">Danh sách tài khoản</h4>
+                                <a href="~/Admin/AdminRoles/Create" class="btn btn-primary">Thêm mới</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="width: 5%">ID</th>
+                                            <th style="width: 18%">Họ và tên</th>
+                                            <th style="width: 17%">Email</th>
+                                            <th style="width: 13%">Điện thoại</th>
+                                            <th style="width: 15%">Quyền truy cập</th>
+                                            <th>Trạng thái</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="vertical-align: middle">
+                                        @if (Model != null)
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <th scope="row">@item.AccountID</th>
+                                                    <td>@item.FullName</td>
+                                                    <td>@item.Email</td>
+                                                    <td>@item.Phone</td>
+                                                    <td>@item.Role.Description</td>
+
+                                                    <td>
+                                                        @if (item.Active)
+                                                        {
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="w-[4px] h-[4px] bg-success rounded-circle"></div>
+                                                                <div>Hoạt động</div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="w-[4px] h-[4px] bg-danger rounded-circle"></div>
+                                                                <div>Không hoạt động</div>
+                                                            </div>
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        <a class="btn btn-outline-success m-2" href="~/Admin/AdminAccounts/Details/@item.AccountID">Xem</a>
+                                                        <a class="btn btn-outline-warning m-2" href="~/Admin/AdminAccounts/Edit/@item.AccountID">Chỉnh sửa</a>
+                                                        <a class="btn btn-outline-danger m-2" href="~/Admin/AdminAccounts/Delete/@item.AccountID">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+        </div>
+    </div>
+
+

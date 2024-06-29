@@ -1,0 +1,67 @@
+﻿@model Ecommerce.Models.Role
+
+@{
+    ViewBag.Title = "Thêm mới quyền truy cập";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Thêm mới quyền truy cập </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="~/Admin/HomeAdmin">Home</a></li>
+                        <li class="breadcrumb-item"><a href="~/Admin/AdminRoles">Danh sách quyền truy cập</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Thêm mới quyền truy cập</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="row">
+                <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Thêm mới quyền truy cập</h4>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="forms-sample">
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-4 col-form-label">Role Name</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-4 col-form-label">Description</label>
+                                            <div class="col-sm-8">
+                                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Thêm mới" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

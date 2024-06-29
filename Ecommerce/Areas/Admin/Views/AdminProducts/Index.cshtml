@@ -1,0 +1,139 @@
+﻿@model PagedList.IPagedList<Ecommerce.Models.Product>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper" style="width: 1100px">
+            <div class="page-header">
+                <h3 class="page-title"> Danh sách sản phẩm </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="~/Admin/HomeAdmin">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Danh sách sản phẩm</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 30px">
+                                <h4 class="card-title" style="margin-bottom: 0">Danh sách sản phẩm</h4>
+                                <a href="~/Admin/AdminProducts/Create" class="btn btn-primary">Thêm mới</a>
+                                <div style="margin-left: 24px">
+                                    @{
+                                        var danhMucList = ViewData["DanhMuc"] as SelectList;
+                                    }
+                                    <select id="idcat" name="idcat" class="form-select form-select-sm" style="min-width: 200px; min-height: 40px;" onchange="filterProducts()">
+                                        <option selected>Chọn danh mục</option>
+                                        <option value="0">Chọn tất cả</option>
+                                        @foreach (var item in danhMucList)
+                                        {
+                                            <option value="@item.Value">@item.Text</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Danh mục</th>
+                                            <th scope="col">Giá</th>
+                                            <th scope="col">Tồn kho</th>
+                                            
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="records_table" style="vertical-align: middle;">
+                                        @if (Model != null)
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td style="width: 5%;">@item.ProductID</td>
+                                                    <td class="col-3">@item.ProductName</td>
+                                                    <td>@item.Category.CatName</td>
+                                                    <td class="col-1">@item.Price</td>
+                                                    <td style="width: 10%;">@item.UnitslnStock</td>
+                                                    
+                                                    <td>
+                                                        <a class="btn btn-outline-success m-2" href="~/Admin/AdminProducts/Details/@item.ProductID">Xem</a>
+                                                        <a class="btn btn-outline-warning m-2" href="~/Admin/AdminProducts/Edit/@item.ProductID">Chỉnh sửa</a>
+                                                        <a class="btn btn-outline-danger m-2" href="~/Admin/AdminProducts/Delete/@item.ProductID">Xóa</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+
+                                @if (Model.PageCount > 1)
+                                {
+                                    <div class="btn-toolbar justify-content-center" role="toolbar">
+                                        @if (Model.HasPreviousPage)
+                                        {
+                                            <div class="btn-group me-2" role="group" aria-label="Third group">
+                                                <a class="btn btn-secondary" href="@Url.Action("Index", new { page = Model.PageNumber - 1 })"><</a>
+                                            </div>
+                                        }
+
+                                        @for (int i = 1; i <= Model.PageCount; i++)
+                                        {
+                                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                                <a class="btn @(Model.PageNumber == i ? "btn-primary" : "btn-secondary")" href="@Url.Action("Index", new { page = i })">@i</a>
+                                            </div>
+                                        }
+
+                                        @if (Model.HasNextPage)
+                                        {
+                                            <div class="btn-group me-2" role="group" aria-label="Third group">
+                                                <a class="btn btn-secondary" href="@Url.Action("Index", new { page = Model.PageNumber + 1 })">></a>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    ::placeholder {
+        font-size: 15px;
+        color: #6C7293 !important;
+    }
+</style>
+
+<script>
+    // Lấy đối tượng input và biểu tượng xóa
+    var searchInput = document.getElementById('searchInput');
+    var clearSearch = document.getElementById('clearSearch');
+
+    // Xác định sự kiện click cho biểu tượng xóa
+    clearSearch.addEventListener('click', function () {
+        // Xóa giá trị của input
+        searchInput.value = '';
+    });
+</script>
+
+
+
+
+
+

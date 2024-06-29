@@ -1,0 +1,53 @@
+﻿@model Ecommerce.Models.Role
+
+@{
+    ViewBag.Title = "Xem thông tin quyền truy cập";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h3 class="page-title"> Thông tin quyền truy cập </h3>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="~/Admin/HomeAdmin">Home</a></li>
+                        <li class="breadcrumb-item"><a href="~/Admin/AdminRoles">Danh sách quyền truy cập</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Thông tin quyền truy cập</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between" style="margin-bottom: 30px">
+                                <h4 class="card-title" style="margin-bottom: 0">Thông tin quyền truy cập</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>@Model.RoleID</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tên quyền truy cập</td>
+                                            <td>@Model.RoleName</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mô tả</td>
+                                            <td>@Model.Description</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

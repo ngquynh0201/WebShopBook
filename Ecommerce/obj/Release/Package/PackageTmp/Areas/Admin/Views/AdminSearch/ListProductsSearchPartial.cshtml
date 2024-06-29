@@ -1,0 +1,86 @@
+﻿@model List<Ecommerce.Models.Product>
+@model PagedList.IPagedList<Ecommerce.Models.Product>
+
+<div id="searchResults">
+    <!-- Kết quả tìm kiếm sẽ được hiển thị ở đây -->
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Tên sản phẩm</th>
+                    <th scope="col">Danh mục</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Tồn kho</th>
+                    <th scope="col">Trạng thái</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="records_table" style="vertical-align: middle;">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="width: 5%;">@item.ProductID</td>
+                            <td class="col-3">@item.ProductName</td>
+                            <td>@item.Category.CatName</td>
+                            <td class="col-1">$@item.Price</td>
+                            <td style="width: 10%;">@item.UnitslnStock</td>
+                            <td>
+                                @if (item.UnitslnStock.Value > 0)
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <div style="width: 8px; height: 8px; margin-right: 6px" class="bg-success rounded-circle"></div>
+                                        <div>In Stock</div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <div style="width: 8px; height: 8px; margin-right: 6px" class="bg-danger rounded-circle"></div>
+                                        <div>Out Stock</div>
+                                    </div>
+                                }
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-success m-2" href="~/Admin/AdminProducts/Details/@item.ProductID">View</a>
+                                <a class="btn btn-outline-warning m-2" href="~/Admin/AdminProducts/Edit/@item.ProductID">Edit</a>
+                                <a class="btn btn-outline-danger m-2" href="~/Admin/AdminProducts/Delete/@item.ProductID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+        @if (Model.PageCount > 1)
+        {
+            <div class="btn-toolbar justify-content-center" role="toolbar">
+                @if (Model.HasPreviousPage)
+                {
+                    <div class="btn-group me-2" role="group" aria-label="Third group">
+                        <a class="btn btn-secondary" href="@Url.Action("Index", new { page = Model.PageNumber - 1 })"><</a>
+                    </div>
+                }
+
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+                    <div class="btn-group me-2" role="group" aria-label="First group">
+                        <a class="btn @(Model.PageNumber == i ? "btn-primary" : "btn-secondary")" href="@Url.Action("Index", new { page = i })">@i</a>
+                    </div>
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <div class="btn-group me-2" role="group" aria-label="Third group">
+                        <a class="btn btn-secondary" href="@Url.Action("Index", new { page = Model.PageNumber + 1 })">></a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+</div>
+

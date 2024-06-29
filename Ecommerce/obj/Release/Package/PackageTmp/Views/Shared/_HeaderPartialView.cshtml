@@ -1,0 +1,171 @@
+﻿<header class="header-2 bg-white">
+    <!-- Begin Header Top Area -->
+    <div class="header-top">
+        <div class="container">
+            <div class="header-top-nav">
+                <div class="row">
+                    <!-- Begin Header Top Left Area Area -->
+                    <div class="col-lg-5 col-md-6">
+                        <div class="top-selector-wrapper">
+                            <ul class="single-top-selector">
+                                <!-- Begin Language Area -->
+                                <li class="language list-inline-item">
+                                    <span>Việt Nam</span>
+                                    <div class="btn-group">
+                                        <button class="dropdown-toggle"><img src="~/Content/assets/images/menu/flag-icon/logoVN.jpg" ></button>
+                                        <div class="dropdown-menu">
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- Language End Here -->
+                                <!-- Begin Currency Area -->
+                                <li class="currency list-inline-item">
+                                    <span>Currency:</span>
+                                    <div class="btn-group">
+                                        <button class="dropdown-toggle"> VNĐ</button>
+                                        <div class="dropdown-menu">
+                                            <ul>
+                                                <li><a href="#" class="Tiền tệ">VNĐ</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- Currency Area End Here -->
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Header Top Left Area End Here -->
+                    <!-- Begin Header Top Right Area -->
+                    <div class="col-lg-7 col-md-6">
+                        <div class="header-top-right">
+                            @{
+                                var user = (Ecommerce.Models.Customer)HttpContext.Current.Session["user"];
+                            }
+
+                            @if (user != null)
+                            {
+                                // Người dùng đã đăng nhập
+                                <div style="display: flex; justify-content: flex-end">
+                                    <div style="cursor: pointer">
+                                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                            <img class="rounded-circle me-lg-2" src="~/Content/images/customers/@user.Avatar" alt="" style="width: 40px; height: 40px; object-fit: cover; cursor: pointer">
+                                            <span class="d-none d-lg-inline-flex" style="font-size: 16px; cursor: pointer">@user.FullName</span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end bg-white border-1 rounded-0 rounded-bottom m-0">
+                                            <a href="~/Account/MyProfile/@user.CustomerID" class="dropdown-item">My Profile</a>
+                                            <a href="~/Error" class="dropdown-item">Settings</a>
+                                            <a href="~/Account/Logout" class="dropdown-item">Log Out</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                // Người dùng chưa đăng nhập
+                                <ul class="user-block list-inline">
+                                    <li><a href="~/Account/Register">Đăng ký</a></li>
+                                    <li><a href="~/Account/Login">Đăng nhập</a></li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                    <!-- Header Top Right Area End Here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Top Area End Here -->
+    <!-- Begin Header Middle Area -->
+    <div class="header-middle">
+        <div class="container logo-nav">
+            <div class="row align-items-center">
+                <!-- Begin Logo Area -->
+                <div class="col-lg-3">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="~/Content/Logo.png" alt="FB's Logo">
+                        </a>
+                    </div>
+                </div>
+                <!-- Logo Area End Here -->
+                <!-- Begin Header Middle Right Area -->
+                <div class="col-lg-9">
+                    <!-- Begin Header Middle Right Area -->
+                    <div class="header-middle-right">
+                        <!-- Begin Header Middle Searchbox Area -->
+                        <form action="#" class="hm-searchbox" style="margin-left: 70px">
+                            @{
+                                var danhMucList = ViewData["DanhMuc"] as SelectList;
+                            }
+                            <input type="text" placeholder="Enter your search key ...">
+                            <button class="fb-search_btn" type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                        <!-- Header Middle Searchbox Area End Here -->
+                        @if (user != null)
+                        {
+                            <div style="display: flex; justify-content: end">
+                                <a href="~/Error">
+                                    <ul class="hm-menu">
+                                        <!-- Begin Header Mini Cart Area -->
+                                        <li class="hm-minicart">
+                                            <div style="padding-left: 55px">
+                                                <span class="item-icon" style="cursor: pointer"></span>
+                                                <span class="item-text">
+                                                    My Cart
+                                                    <span class="cart-item-count">0</span>
+                                                </span>
+                                                <span class="item-total">$0</span>
+                                            </div>
+                                        </li>
+                                        <!-- Header Mini Cart Area End Here -->
+                                    </ul>
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+                    <!-- Header Middle Right Area End Here -->
+                </div>
+                <!-- Header Middle Right Area End Here -->
+            </div>
+        </div>
+    </div>
+    <!-- Header Middle Area End Here -->
+    <!-- Begin Header Bottom Area -->
+    <div class="header-bottom bg-royal-blue header-sticky stick">
+        <div class="container">
+            <div class="row">
+                <!-- Begin Header Bottom Menu Area -->
+                <div class="col-lg-12 d-none d-lg-block d-xl-block">
+                    <!-- FB's Navigation -->
+                    <nav class="fb-navigation">
+                        <ul>
+                            <li>
+                                <a href="/">Trang chủ</a>
+                            </li>
+                            <li>
+                                <a href="~/Product">Shop</a>
+                            </li>
+                            <li>
+                                <a href="~/Blog">Blog</a>
+                            </li>
+                            <li>
+                                <a href="~/Error">Hướng dẫn sử dụng</a>
+                            </li>
+                            <li>
+                                <a href="~/Home/About">Về chúng tôi</a>
+                            </li>
+                            <li>
+                                <a href="~/Home/Contact"> Liên hệ</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!--FB's Navigation -->
+                </div>
+                <!-- Header Bottom Menu Area End Here -->
+            </div>
+        </div>
+    </div>
+    <!-- Header Bottom Area End Here -->
+</header>
+
